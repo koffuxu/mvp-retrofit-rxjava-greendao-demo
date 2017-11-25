@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+        applicationId "com.example.mvp_demo"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    greendao {
+//        schemaVersion 当前数据库结构的版本。结构版本变化时在OpenHelpers中被使用到。当你改变实体或者数据的结构时，这个值应该增加。
+//        daoPackage 生成的DAO，DaoMaster和DaoSession的包名。默认是实体的包名。
+//        targetGenDir 生成源文件的路径。默认源文件目录是在build目录中的(build/generated/source/greendao)。
+//        generateTests 设置是否自动生成单元测试。
+//        targetGenDirTest 生成的单元测试的根目录。
+        schemaVersion 1
+        targetGenDir 'src/main/java/'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+
+    // Because RxAndroid releases are few and far between, it is recommended you also
+// explicitly depend on RxJava's latest version for bug fixes and new features.
+    //格式：compile ‘name:version’
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.android.support:design:24.0.0'
+    compile 'com.android.support:support-v4:24.0.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'org.greenrobot:greendao:3.2.0'
+   // compile 'com.google.code.gson:gson:2.7'
+}
